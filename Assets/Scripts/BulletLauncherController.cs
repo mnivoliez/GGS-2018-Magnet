@@ -8,15 +8,26 @@ public class BulletLauncherController : MonoBehaviour {
 	[SerializeField] [Range(-90, 90)] private float _angle;
 	[SerializeField] private float _intensity;
 
+	[SerializeField] private float _bulletRate;
+	private float _timeSinceLastShot;
+
 	// Use this for initialization
 	void Start () {
-		
+		_timeSinceLastShot = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		LaunchBullet();
+	}
+
+	void FixedUpdate() {
+		if (_timeSinceLastShot > _bulletRate) {
+			_timeSinceLastShot = 0f;
+			LaunchBullet();
+		} else {
+			_timeSinceLastShot += Time.fixedDeltaTime;
+		}
 	}
 
 	private void LaunchBullet () {
@@ -26,8 +37,5 @@ public class BulletLauncherController : MonoBehaviour {
 		Vector3 direction = _bulletOutput.transform.position - transform.position;
 		direction.Normalize();
 		bullet.AddForce(direction * _intensity, ForceMode.Force);
-
-		Destroy(bullet, 10);
-		
 	}
 }
