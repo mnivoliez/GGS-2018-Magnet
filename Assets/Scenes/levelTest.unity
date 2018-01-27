@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -120,6 +120,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114470704700500890, guid: d8cffca6170b25e429cf3c328f03eefe,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224697385709853962, guid: d8cffca6170b25e429cf3c328f03eefe,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -228,6 +233,31 @@ Prefab:
     - target: {fileID: 1627007981489922, guid: d8cffca6170b25e429cf3c328f03eefe, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470704700500890, guid: d8cffca6170b25e429cf3c328f03eefe,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470704700500890, guid: d8cffca6170b25e429cf3c328f03eefe,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470704700500890, guid: d8cffca6170b25e429cf3c328f03eefe,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1737691560}
+    - target: {fileID: 114470704700500890, guid: d8cffca6170b25e429cf3c328f03eefe,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadNextLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 114470704700500890, guid: d8cffca6170b25e429cf3c328f03eefe,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8cffca6170b25e429cf3c328f03eefe, type: 2}
@@ -747,11 +777,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4202943431771062, guid: ddfcb29b30b4344c1b0ac18d86092e42, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -809,44 +834,15 @@ Prefab:
       propertyPath: nextLevelButton
       value: 
       objectReference: {fileID: 1524322004}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[3]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[4]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[5]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[6]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[7]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[8]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587992947410918, guid: ddfcb29b30b4344c1b0ac18d86092e42,
-        type: 2}
-      propertyPath: _bulletsShootingAngle.Array.data[9]
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddfcb29b30b4344c1b0ac18d86092e42, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1737691560 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114312436578838284, guid: ddfcb29b30b4344c1b0ac18d86092e42,
+    type: 2}
+  m_PrefabInternal: {fileID: 1737691559}
+  m_Script: {fileID: 11500000, guid: 24021365689854258a9d22d6817415cd, type: 3}
 --- !u!1001 &1893937256
 Prefab:
   m_ObjectHideFlags: 0
