@@ -17,6 +17,7 @@ public class BulletLauncherController : MonoBehaviour {
 	void Start () {
 		_timeSinceLastShot = 0f;
 		_gameManager.PlanShotsNumber(_angles.Count);
+		transform.rotation = Quaternion.Euler(0, 0, -90);
 	}
 	
 	// Update is called once per frame
