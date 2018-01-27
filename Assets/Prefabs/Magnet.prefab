@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114248487988032114}
   - component: {fileID: 23241497777137400}
   - component: {fileID: 33518334533647962}
+  - component: {fileID: 114030801996785688}
   m_Layer: 0
   m_Name: AreaEffect
   m_TagString: Untagged
@@ -57,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4215024485918246}
   - component: {fileID: 114059025924939976}
+  - component: {fileID: 58750672032103942}
   m_Layer: 0
   m_Name: Magnet
   m_TagString: Untagged
@@ -187,6 +189,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429245697253796}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!58 &58750672032103942
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828279725224684}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.55
+--- !u!114 &114030801996785688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1429245697253796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566f4a419dbacac4b95112570ad0f8b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114059025924939976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,10 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9362a3700a2cd4bb99e3c9b160333e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionForce: 1
-  intensity: 2
-  attractMaterial: {fileID: 2100000, guid: 0823e1509ec48ce468645170b479c418, type: 2}
-  repulseMaterial: {fileID: 2100000, guid: ea3a0b8c1f820f04bbeb7bd56228e554, type: 2}
+  directionForce: 0
+  intensity: 500
 --- !u!114 &114248487988032114
 MonoBehaviour:
   m_ObjectHideFlags: 1

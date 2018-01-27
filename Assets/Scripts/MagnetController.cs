@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetDragHandler : MonoBehaviour
-{
+enum MagnetChild {
+	AreaEffect,
+	Core
+}
+public class MagnetController : MonoBehaviour {
 
-    private Vector3 dist;
+	private MagnetEffect magnetEffect;
+	[SerializeField] private DirectionForce directionForce;
+	[SerializeField] private float intensity = 2;
+
+	private Vector3 dist;
     private float posX;
     private float posY;
     private float timerMouseDown;
     private bool isMouseDown;
-    private MagnetEffect magnetEffect;
 
-    void Start()
-    {
-        timerMouseDown = 0f;
-        isMouseDown = false;
-        magnetEffect = GetComponent<MagnetEffect>();
-    }
 
     void Update()
     {
@@ -26,7 +26,6 @@ public class MagnetDragHandler : MonoBehaviour
             timerMouseDown += Time.deltaTime;
         }
     }
-
 
 
     void OnMouseDown()
@@ -43,7 +42,9 @@ public class MagnetDragHandler : MonoBehaviour
         if (isMouseDown) isMouseDown = false;
         if (timerMouseDown < 0.2f)
         {
-            //NextType();
+            NextType();
+			magnetEffect.DirectionForce = this.directionForce;
+
         }
 		timerMouseDown = 0f;
     }
@@ -52,7 +53,22 @@ public class MagnetDragHandler : MonoBehaviour
     {
         Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-        transform.parent.position = worldPos;
+        transform.position = worldPos;
     }
 
+
+	// Use this for initialization
+	void Start () {
+		magnetEffect = transform.Find(MagnetChild.AreaEffect.ToString()).gameObject.GetComponent<MagnetEffect>();
+		magnetEffect.DirectionForce = this.directionForce;
+		magnetEffect.Intensity = this.intensity;
+		timerMouseDown = 0f;
+        isMouseDown = false;
+	}
+
+	public void NextType() {
+		directionForce = 
+			directionForce == DirectionForce.Attract ? 
+				DirectionForce.Repulse : DirectionForce.Attract;
+	}
 }
