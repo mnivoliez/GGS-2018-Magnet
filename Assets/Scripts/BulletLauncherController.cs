@@ -14,6 +14,7 @@ public class BulletLauncherController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_timeSinceLastShot = 0f;
+		transform.rotation = Quaternion.Euler(0, 0, -90);
 	}
 	
 	// Update is called once per frame
