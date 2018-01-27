@@ -5,11 +5,13 @@ using UnityEngine;
 public class AbsorbtionController : MonoBehaviour {
 	
 	private List<GameObject> objectsInAbsorbtion;
+	private GameManager gameManager;
 	[SerializeField]private float rangeDestroy = 0.05f;
 
 	// Use this for initialization
 	void Start () {
 		objectsInAbsorbtion = new List<GameObject>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
 	// Update is called once per frame
@@ -22,6 +24,7 @@ public class AbsorbtionController : MonoBehaviour {
 			{
 				if ((objectToDestroy.transform.position - transform.position).magnitude <= rangeDestroy)
 				{
+					gameManager.ReceivedBullet();
 					objectsToDestroy.Add(objectToDestroy);
 				}
 			}

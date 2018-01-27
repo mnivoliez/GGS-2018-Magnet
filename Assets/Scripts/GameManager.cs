@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
 
 	private void Win() {
 		Debug.Log("winner");
-
+		
 	}
 
 	private void Lose() {
