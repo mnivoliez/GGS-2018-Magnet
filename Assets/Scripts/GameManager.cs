@@ -18,7 +18,14 @@ public class GameManager : MonoBehaviour
 
     private SequenceState _sequenceState;
 
+    private List<GameObject> magnetsCreated;
+
     [SerializeField] private BulletLauncherController _bulletLauncherController;
+    [SerializeField] private GameObject menuLevel;
+    [SerializeField] private GameObject blurPlane;
+    [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject nextLevelButton;
+    [SerializeField] float timeOnFloat;
 
     // Use this for initialization
     void Start()
@@ -27,6 +34,7 @@ public class GameManager : MonoBehaviour
         _bullets = new List<GameObject>();
         _currentAngle = _bulletsShootingAngle.GetEnumerator();
         _sequenceState = SequenceState.Stopped;
+        magnetsCreated = new List<GameObject>();
     }
 
     void FixedUpdate()
@@ -52,12 +60,13 @@ public class GameManager : MonoBehaviour
     public void ReceivedBullet()
     {
         _received++;
-        if (_bullets.Count == 0 && _bulletsShootingAngle.Count == _received) Win();
+        if (_bulletsShootingAngle.Count == _received) Win();
     }
 
     public void Play()
     {
         _sequenceState = SequenceState.Running;
+        _received = 0;
     }
 
     public void Stop()
@@ -71,9 +80,43 @@ public class GameManager : MonoBehaviour
         _currentAngle = _bulletsShootingAngle.GetEnumerator();
     }
 
+    public void Pause()
+    {
+        timeOnFloat = Time.timeScale;
+        Time.timeScale = 0;
+        menuLevel.SetActive(true);
+        nextLevelButton.SetActive(false);
+        blurPlane.SetActive(true);
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = timeOnFloat;
+        continueButton.SetActive(true);
+        menuLevel.SetActive(false);
+        blurPlane.SetActive(false);
+    }
+
+    public void Retry()
+    {
+        Stop();
+        foreach (GameObject magnetCreated in magnetsCreated)
+        {
+            Destroy(magnetCreated);
+        }
+        magnetsCreated = new List<GameObject>();
+        UnPause();
+    }
+
+    public void AddMagnet(GameObject magnet)
+    {
+        magnetsCreated.Add(magnet);
+    }
+
     private void Win()
     {
-        Debug.Log("winner");
-
+        menuLevel.SetActive(true);
+        continueButton.SetActive(false);
+        blurPlane.SetActive(true);
     }
 }

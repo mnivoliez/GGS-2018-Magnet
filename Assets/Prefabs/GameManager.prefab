@@ -51,4 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89308df560db742ec914ce1352dc0858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeout: 5
+  _bulletsShootingAngle:
+  - 25
+  - 25
+  - 25
+  - 25
+  - 25
+  - 25
+  - 25
+  - 25
+  - 25
+  - 25
+  _bulletLauncherController: {fileID: 0}
+  menuLevel: {fileID: 0}
+  blurPlane: {fileID: 0}
+  continueButton: {fileID: 0}
+  nextLevelButton: {fileID: 0}
+  timeOnFloat: 0
