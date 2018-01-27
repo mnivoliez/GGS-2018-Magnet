@@ -5,11 +5,13 @@ using UnityEngine;
 public class AbsorbtionController : MonoBehaviour {
 	
 	private List<GameObject> objectsInAbsorbtion;
+	private GameManager gameManager;
 	[SerializeField]private float rangeDestroy = 0.05f;
 
 	// Use this for initialization
 	void Start () {
 		objectsInAbsorbtion = new List<GameObject>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
 	// Update is called once per frame
@@ -20,8 +22,9 @@ public class AbsorbtionController : MonoBehaviour {
 
 			foreach (GameObject objectToDestroy in objectsInAbsorbtion)
 			{
-				if ((objectToDestroy.transform.position - transform.position).magnitude <= rangeDestroy)
+				if (objectToDestroy != null && (objectToDestroy.transform.position - transform.position).magnitude <= rangeDestroy)
 				{
+					gameManager.ReceivedBullet();
 					objectsToDestroy.Add(objectToDestroy);
 				}
 			}
@@ -30,8 +33,11 @@ public class AbsorbtionController : MonoBehaviour {
 			{
 				foreach (GameObject objectToDestroy in objectsToDestroy)
 				{
-					objectsInAbsorbtion.Remove(objectToDestroy);
-					Destroy(objectToDestroy);
+					if (objectToDestroy != null) {
+						objectsInAbsorbtion.Remove(objectToDestroy);
+						Destroy(objectToDestroy);
+					}
+					
 				}
 			}
 		}
@@ -45,6 +51,7 @@ public class AbsorbtionController : MonoBehaviour {
 			Rigidbody body = objectCollided.GetComponent<Rigidbody>();
 			body.velocity = (transform.position - objectCollided.transform.position).normalized;
 			objectsInAbsorbtion.Add(objectCollided);
+			body.useGravity = false;
 		}
 	}
 }
