@@ -113,7 +113,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &230489354 stripped
+--- !u!1 &1353805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1353810}
+  - component: {fileID: 1353809}
+  - component: {fileID: 1353808}
+  - component: {fileID: 1353807}
+  - component: {fileID: 1353806}
+  m_Layer: 0
+  m_Name: BlurPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1353806
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
     type: 2}
@@ -335,10 +354,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 745631647}
-    - target: {fileID: 114741052852427610, guid: e631a29a123a641b095cb683788dad3a,
+    - target: {fileID: 58959848422839202, guid: e631a29a123a641b095cb683788dad3a,
         type: 2}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 0
+      propertyPath: m_Radius
+      value: 92.7
       objectReference: {fileID: 0}
     - target: {fileID: 114841410925541476, guid: e631a29a123a641b095cb683788dad3a,
         type: 2}
