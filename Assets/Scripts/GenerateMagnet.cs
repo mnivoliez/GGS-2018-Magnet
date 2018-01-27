@@ -14,6 +14,7 @@ public class GenerateMagnet : MonoBehaviour {
 
 
 	void OnMouseDown(){
-		Instantiate(prefabMagnet);
+		GameObject magnet = Instantiate(prefabMagnet);
+		GameObject.Find("GameManager").GetComponent<GameManager>().AddMagnet(magnet);
 	}
 }
