@@ -7,6 +7,8 @@ public class AbsorbtionController : MonoBehaviour {
 	private List<GameObject> objectsInAbsorbtion;
 	[SerializeField]private float rangeDestroy = 0.05f;
 
+	[SerializeField] private GameManager _gameManager;
+
 	// Use this for initialization
 	void Start () {
 		objectsInAbsorbtion = new List<GameObject>();
@@ -23,6 +25,7 @@ public class AbsorbtionController : MonoBehaviour {
 				if ((objectToDestroy.transform.position - transform.position).magnitude <= rangeDestroy)
 				{
 					objectsToDestroy.Add(objectToDestroy);
+					_gameManager.ReceivedBullet();
 				}
 			}
 			
@@ -43,6 +46,7 @@ public class AbsorbtionController : MonoBehaviour {
 		if (objectCollided.tag == "Bullet")
 		{
 			Rigidbody body = objectCollided.GetComponent<Rigidbody>();
+			body.useGravity = false;
 			body.velocity = (transform.position - objectCollided.transform.position).normalized;
 			objectsInAbsorbtion.Add(objectCollided);
 		}
