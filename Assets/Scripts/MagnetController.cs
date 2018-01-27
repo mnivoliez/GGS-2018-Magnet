@@ -15,8 +15,21 @@ public class MagnetController : MonoBehaviour {
 	private Vector3 dist;
     private float posX;
     private float posY;
+    private float posZ;
     private float timerMouseDown;
     private bool isMouseDown;
+    public bool isOnTrashcan;
+
+
+    // Use this for initialization
+	void Start () {
+		magnetEffect = transform.Find(MagnetChild.AreaEffect.ToString()).gameObject.GetComponent<MagnetEffect>();
+		magnetEffect.DirectionForce = this.directionForce;
+		magnetEffect.Intensity = this.intensity;
+		timerMouseDown = 0f;
+        isMouseDown = false;
+        isOnTrashcan = false;
+	}
 
 
     void Update()
@@ -33,38 +46,38 @@ public class MagnetController : MonoBehaviour {
         dist = Camera.main.WorldToScreenPoint(transform.position);
         posX = Input.mousePosition.x - dist.x;
         posY = Input.mousePosition.y - dist.y;
+        posZ = 10;
         if (!isMouseDown) isMouseDown = true;
         timerMouseDown = 0f;
     }
 
     void OnMouseUp()
     {
-        if (isMouseDown) isMouseDown = false;
-        if (timerMouseDown < 0.2f)
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        if (isOnTrashcan)
         {
-            NextType();
-			magnetEffect.DirectionForce = this.directionForce;
-
+            GameObject.Find("GameManager").GetComponent<GameManager>().RemoveMagnet(gameObject);
+        } else {
+            if (isMouseDown) isMouseDown = false;
+            if (timerMouseDown < 0.2f)
+            {
+                NextType();
+                magnetEffect.DirectionForce = this.directionForce;
+            }
+            timerMouseDown = 0f;
         }
-		timerMouseDown = 0f;
+        
     }
 
     void OnMouseDrag()
     {
         Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
-        transform.position = worldPos;
+        transform.position = new Vector3(worldPos.x, worldPos.y, posZ);
     }
 
 
-	// Use this for initialization
-	void Start () {
-		magnetEffect = transform.Find(MagnetChild.AreaEffect.ToString()).gameObject.GetComponent<MagnetEffect>();
-		magnetEffect.DirectionForce = this.directionForce;
-		magnetEffect.Intensity = this.intensity;
-		timerMouseDown = 0f;
-        isMouseDown = false;
-	}
+	
 
 	public void NextType() {
 		directionForce = 
