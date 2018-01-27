@@ -80,11 +80,7 @@ public class MagnetEffect : MonoBehaviour {
 		}
 	}
 
-	public void NextType() {
-		directionForce = 
-			directionForce == DirectionForce.Attract ? 
-				DirectionForce.Repulse : DirectionForce.Attract;
-	}
+	
 
 	public DirectionForce DirectionForce
     {
