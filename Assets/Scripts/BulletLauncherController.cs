@@ -2,44 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletLauncherController : MonoBehaviour {
-	[SerializeField] private GameManager _gameManager;
-	[SerializeField] private Transform _bulletOutput;
-	[SerializeField] private Rigidbody _bulletPrefab;
-	[SerializeField] [Range(-90, 90)] private List<float> _angles;
+public enum BulletLauncherStatus
+{
+    AwaintingAngle,
+    Moving,
+    AwaintingFiringOrder,
+    WaitingForFireRate,
+}
+public class BulletLauncherController : MonoBehaviour
+{
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Transform _bulletOutput;
+    [SerializeField] private Rigidbody _bulletPrefab;
 
-	[SerializeField] private float _intensity;
+    private BulletLauncherStatus _status;
+    private float _targetAngle;
 
-	[SerializeField] private float _bulletRate;
-	private float _timeSinceLastShot;
+    [SerializeField] private float _intensity;
 
-	// Use this for initialization
-	void Start () {
-		_timeSinceLastShot = 0f;
-		_gameManager.PlanShotsNumber(_angles.Count);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _fireRate;
+    private float _timeSinceLastFire;
 
-	}
+    private float _initialAngle = -90;
 
-	void FixedUpdate() {
-		if (_angles.Count > 0 && _timeSinceLastShot > _bulletRate) {
-			_timeSinceLastShot = 0f;
-			LaunchBullet();
-		} else {
-			_timeSinceLastShot += Time.fixedDeltaTime;
-		}
-	}
 
-	private void LaunchBullet () {
-		transform.rotation = Quaternion.Euler(0, 0, _angles[0] -90);
-		Rigidbody bullet = Instantiate(_bulletPrefab, _bulletOutput.position, Quaternion.identity);
-		Vector3 direction = _bulletOutput.transform.position - transform.position;
-		direction.Normalize();
-		bullet.AddForce(direction * _intensity, ForceMode.Force);
-		_angles.RemoveAt(0);
-		_gameManager.LaunchedBullet();
-	}
+
+    // Use this for initialization
+    void Start()
+    {
+        _status = BulletLauncherStatus.AwaintingAngle;
+        transform.rotation = Quaternion.Euler(0, 0, _initialAngle);
+        _timeSinceLastFire = 0f;
+    }
+
+    void FixedUpdate()
+    {
+        if (_status == BulletLauncherStatus.Moving)
+        {
+            float computedAngle = (_targetAngle + _initialAngle) * Time.fixedDeltaTime * _rotationSpeed;
+            if (transform.rotation.z >= _targetAngle + _initialAngle)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, _targetAngle + _initialAngle);
+                _status = BulletLauncherStatus.WaitingForFireRate;
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, transform.rotation.z + computedAngle);
+            }
+
+        }
+        if(_status != BulletLauncherStatus.AwaintingFiringOrder) {
+            _timeSinceLastFire += Time.fixedDeltaTime;
+        }
+
+        if(_status == BulletLauncherStatus.WaitingForFireRate && _timeSinceLastFire >= _fireRate) {
+            _timeSinceLastFire = 0f;
+            _status = BulletLauncherStatus.AwaintingFiringOrder;
+        }
+    }
+
+    public void RotateTo(float angle)
+    {
+        _targetAngle = angle;
+        _status = BulletLauncherStatus.Moving;
+    }
+
+    public GameObject LaunchBullet()
+    {
+        Rigidbody bullet = Instantiate(_bulletPrefab, _bulletOutput.position, Quaternion.identity);
+        Vector3 direction = _bulletOutput.transform.position - transform.position;
+        direction.Normalize();
+        bullet.AddForce(direction * _intensity, ForceMode.Force);
+        _status = BulletLauncherStatus.AwaintingAngle;
+        return bullet.gameObject;
+    }
+
+    public BulletLauncherStatus WhatIsTheStatus()
+    {
+        return _status;
+    }
+
+    public void Reset()
+    {
+        _status = BulletLauncherStatus.AwaintingAngle;
+        transform.rotation = Quaternion.Euler(0, 0, _initialAngle);
+        _timeSinceLastFire = 0f;
+
+    }
 }

@@ -2,58 +2,78 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-	private int _launch;
-	private int _received;
+enum SequenceState
+{
+    Running,
+    Stopped
+}
 
-	private int _shotsNumber;
+public class GameManager : MonoBehaviour
+{
+    private List<GameObject> _bullets;
+    private int _received;
 
-	[SerializeField] private float _timeout;
-	private float _effectiveTimeout;
-	private bool _startTimeout;
+    [SerializeField] [Range(-90, 90)] private List<float> _bulletsShootingAngle;
+    private List<float>.Enumerator _currentAngle;
 
-	// Use this for initialization
-	void Start () {
-		_launch = 0;
-		_received = 0;
-		_shotsNumber = 0;
-		_effectiveTimeout = 0f;
-		_startTimeout = false;
-	}
+    private SequenceState _sequenceState;
 
-	void FixedUpdate() {
-		if(_startTimeout) {
-			_effectiveTimeout += Time.fixedDeltaTime;			
-		}
-		if(_received != _shotsNumber && _effectiveTimeout > _timeout) {
-			Lose();
-		}
-		if(_received == _shotsNumber && _effectiveTimeout < _timeout) {
-			Win();
-		}
-	}
-	
-	public void PlanShotsNumber (int number) {
-		_shotsNumber = number;
-	}
+    [SerializeField] private BulletLauncherController _bulletLauncherController;
 
-	public void LaunchedBullet() {
-		_launch++;
-		if (_launch == _shotsNumber) {
-			_startTimeout = true;
-		}
-	}
+    // Use this for initialization
+    void Start()
+    {
+        _received = 0;
+        _bullets = new List<GameObject>();
+        _currentAngle = _bulletsShootingAngle.GetEnumerator();
+        _sequenceState = SequenceState.Stopped;
+    }
 
-	public void ReceivedBullet () {
-		_received++;
-	}
+    void FixedUpdate()
+    {
+        if (_sequenceState == SequenceState.Running)
+        {
+            switch (_bulletLauncherController.WhatIsTheStatus())
+            {
+                case BulletLauncherStatus.AwaintingAngle:
+                    if (_currentAngle.MoveNext())
+                        _bulletLauncherController.RotateTo(_currentAngle.Current);
 
-	private void Win() {
-		Debug.Log("winner");
+                    break;
+                case BulletLauncherStatus.AwaintingFiringOrder:
+                    _bullets.Add(_bulletLauncherController.LaunchBullet());
+                    break;
+                case BulletLauncherStatus.Moving:
+                    break;
+            }
+        }
+    }
 
-	}
+    public void ReceivedBullet()
+    {
+        _received++;
+        if (_bullets.Count == 0 && _bulletsShootingAngle.Count == _received) Win();
+    }
 
-	private void Lose() {
-		Debug.Log("loser");
-	}
+    public void Play()
+    {
+        _sequenceState = SequenceState.Running;
+    }
+
+    public void Stop()
+    {
+        foreach (var b in _bullets)
+        {
+            Destroy(b);
+        }
+        _sequenceState = SequenceState.Stopped;
+        _bulletLauncherController.Reset();
+        _currentAngle = _bulletsShootingAngle.GetEnumerator();
+    }
+
+    private void Win()
+    {
+        Debug.Log("winner");
+
+    }
 }
