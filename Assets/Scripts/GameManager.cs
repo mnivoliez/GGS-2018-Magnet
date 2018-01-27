@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     public void UnPause()
     {
         Time.timeScale = timeOnFloat;
+        nextLevelButton.SetActive(true);
         continueButton.SetActive(true);
         menuLevel.SetActive(false);
         blurPlane.SetActive(false);
@@ -115,6 +116,9 @@ public class GameManager : MonoBehaviour
 
     private void Win()
     {
+        Stop();
+        timeOnFloat = Time.timeScale;
+        Time.timeScale = 0;
         menuLevel.SetActive(true);
         continueButton.SetActive(false);
         blurPlane.SetActive(true);
