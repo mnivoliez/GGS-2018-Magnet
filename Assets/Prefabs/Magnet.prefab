@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23877386312582100}
   m_Layer: 0
   m_Name: Core
-  m_TagString: Untagged
+  m_TagString: MagnetCore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionForce: 0
   intensity: 500
+  isOnTrashcan: 0
 --- !u!114 &114248487988032114
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -114,6 +114,12 @@ public class GameManager : MonoBehaviour
         magnetsCreated.Add(magnet);
     }
 
+    public void RemoveMagnet(GameObject magnet)
+    {
+        magnetsCreated.Remove(magnet);
+        Destroy(magnet);
+    }
+
     private void Win()
     {
         Stop();
