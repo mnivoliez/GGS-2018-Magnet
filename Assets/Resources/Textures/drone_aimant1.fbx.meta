@@ -1,70 +1,45 @@
 fileFormatVersion: 2
-guid: 407b6276700b40e43b04a182a925e392
-timeCreated: 1517080264
+guid: e5cce8175d66ecd419b69b8d215f735b
+timeCreated: 1517097577
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: node_id4
-    100004: node_id5
-    100006: node_id5 1
-    100008: node_id6
-    100010: node_id7
-    100012: node_id8
-    400000: //RootNode
-    400002: node_id4
-    400004: node_id5
-    400006: node_id5 1
-    400008: node_id6
-    400010: node_id7
-    400012: node_id8
-    2100000: Material_122
-    2100002: Material_124
-    2100004: Material_126
-    2100006: Material_128
-    2100008: Material_130
-    2300000: node_id4
-    2300002: node_id5
-    2300004: node_id5 1
-    2300006: node_id7
-    2300008: node_id8
-    3300000: node_id4
-    3300002: node_id5
-    3300004: node_id5 1
-    3300006: node_id7
-    3300008: node_id8
-    4300000: node_id4
-    4300002: node_id5
-    4300004: node_id5
-    4300006: node_id7
-    4300008: node_id8
+    100000: Cube.001
+    100002: //RootNode
+    100004: Sphere
+    100006: Sphere.001
+    100008: Sphere.004
+    400000: Cube.001
+    400002: //RootNode
+    400004: Sphere
+    400006: Sphere.001
+    400008: Sphere.004
+    2100000: mat_out
+    2100002: mat_in
+    2300000: Cube.001
+    2300002: Sphere
+    2300004: Sphere.001
+    2300006: Sphere.004
+    3300000: Cube.001
+    3300002: Sphere
+    3300004: Sphere.001
+    3300006: Sphere.004
+    4300000: Sphere.001
+    4300002: Cube.001
+    4300004: Sphere.004
+    4300006: Sphere
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material_122
-    second: {fileID: 2100000, guid: 407b6276700b40e43b04a182a925e392, type: 3}
+      name: mat_in
+    second: {fileID: 2100000, guid: 5fd4d00f01b529a49930cf5aca1cedba, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material_124
-    second: {fileID: 2100002, guid: 407b6276700b40e43b04a182a925e392, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_126
-    second: {fileID: 2100004, guid: 407b6276700b40e43b04a182a925e392, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_128
-    second: {fileID: 2100006, guid: 407b6276700b40e43b04a182a925e392, type: 3}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material_130
-    second: {fileID: 2100008, guid: 407b6276700b40e43b04a182a925e392, type: 3}
+      name: mat_out
+    second: {fileID: 2100000, guid: 35947f24759ccb14daf10d857fe3e7e0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
