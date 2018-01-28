@@ -273,7 +273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4215024485918246, guid: 1e882bbe43fb0684586e1341a7f9ec9b, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e882bbe43fb0684586e1341a7f9ec9b, type: 2}
@@ -465,11 +465,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _angles.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4054389776439800, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
       propertyPath: m_LocalPosition.x
       value: -20.04
@@ -500,28 +495,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4054389776439800, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
         type: 2}
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 859475765}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _intensity
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _bulletRate
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _angles.Array.data[1]
-      value: 45.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
   m_IsPrefabParent: 0
