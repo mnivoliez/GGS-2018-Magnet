@@ -46,7 +46,7 @@ public class MagnetController : MonoBehaviour {
         dist = Camera.main.WorldToScreenPoint(transform.position);
         posX = Input.mousePosition.x - dist.x;
         posY = Input.mousePosition.y - dist.y;
-        posZ = 10;
+        posZ = GameObject.Find("UI").transform.position.z;
         if (!isMouseDown) isMouseDown = true;
         timerMouseDown = 0f;
     }
