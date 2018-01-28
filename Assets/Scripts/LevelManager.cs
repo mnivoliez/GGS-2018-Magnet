@@ -54,6 +54,11 @@ public class LevelManager : MonoBehaviour
 		SceneManager.LoadScene("Level_"+currentLevel);
 	}
 
+	public void LoadTutoScene()
+	{
+		SceneManager.LoadScene("Tuto");
+	}
+
 	public void LoadCreditsScene()
 	{
 		SceneManager.LoadScene("Credits");
