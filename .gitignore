@@ -46,3 +46,6 @@ sysinfo.txt
 
 
 # End of https://www.gitignore.io/api/visualstudiocode
+/CrazyOrbit_Data/
+*.exe
+*.x86_64
