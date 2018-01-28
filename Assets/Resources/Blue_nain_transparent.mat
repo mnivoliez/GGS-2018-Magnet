@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 5c3ea0a1e8f0e7b4f87f48e45f93241b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63d73ca9e6b28da4a98bac4d2dd016eb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -65,14 +65,14 @@ Material:
     - _Metallic: 0
     - _Mode: 2
     - _OcclusionStrength: 1
-    - _Parallax: 0.0461
-    - _Shininess: 0.069
+    - _Parallax: 0.0291
+    - _Shininess: 0.032
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.048821356, g: 0.4645486, b: 0.9485294, a: 0.253}
+    - _Color: {r: 0.12326991, g: 0.47401866, b: 0.88235295, a: 0.241}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.25400084, g: 0.29876053, b: 0.5955882, a: 0}
+    - _SpecColor: {r: 0.22058822, g: 0.27358007, b: 0.625, a: 0}
