@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum SequenceState
+public enum SequenceState
 {
     Running,
     Stopped
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject blurPlane;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject nextLevelButton;
+    [SerializeField] private GameObject quadRunning;
     [SerializeField] float timeOnFloat;
 
     // Use this for initialization
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         _currentAngle = _bulletsShootingAngle.GetEnumerator();
         _sequenceState = SequenceState.Stopped;
         magnetsCreated = new List<GameObject>();
+        quadRunning = GameObject.Find("QuadRunning");
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
@@ -45,6 +47,11 @@ public class GameManager : MonoBehaviour
     {
         if (_sequenceState == SequenceState.Running)
         {
+            if (quadRunning.activeSelf == true)
+            {
+                quadRunning.SetActive(false);
+            }
+            
             switch (_bulletLauncherController.WhatIsTheStatus())
             {
                 case BulletLauncherStatus.AwaintingAngle:
@@ -58,6 +65,11 @@ public class GameManager : MonoBehaviour
                     break;
                 case BulletLauncherStatus.Moving:
                     break;
+            }
+        } else {
+            if (quadRunning.activeSelf == false)
+            {
+                quadRunning.SetActive(true);
             }
         }
     }
@@ -133,5 +145,17 @@ public class GameManager : MonoBehaviour
         menuLevel.SetActive(true);
         continueButton.SetActive(false);
         blurPlane.SetActive(true);
+    }
+
+    public SequenceState sequenceState
+    {
+        get
+        {
+            return _sequenceState;
+        }
+        set
+        {
+            _sequenceState = value;
+        }
     }
 }

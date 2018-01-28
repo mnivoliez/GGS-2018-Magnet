@@ -14,8 +14,11 @@ public class GenerateMagnet : MonoBehaviour {
 
 
 	void OnMouseDown(){
-		GameObject magnet = Instantiate(prefabMagnet);
-		magnet.transform.position = new Vector3(Random.Range(-31f, 31f), Random.Range(-8f, 16f), 0);
-		GameObject.Find("GameManager").GetComponent<GameManager>().AddMagnet(magnet);
+		if (GameObject.Find("GameManager").GetComponent<GameManager>().sequenceState == SequenceState.Stopped)
+		{
+			GameObject magnet = Instantiate(prefabMagnet);
+			magnet.transform.position = new Vector3(Random.Range(-31f, 31f), Random.Range(-8f, 16f), 0);
+			GameObject.Find("GameManager").GetComponent<GameManager>().AddMagnet(magnet);
+		}
 	}
 }
