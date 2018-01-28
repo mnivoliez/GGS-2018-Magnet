@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
   _bulletOutput: {fileID: 4876790289507248}
-  _bulletPrefab: {fileID: 54951566594608064, guid: cea0f807ccd2b42fc989703f6e28c21a,
+  _bulletPrefab: {fileID: 54703066941587210, guid: d3a3706c295e9b148a40d9e6f9f77594,
     type: 2}
   _intensity: 3000
   _rotationSpeed: 0.05
