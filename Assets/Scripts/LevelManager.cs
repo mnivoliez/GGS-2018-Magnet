@@ -29,6 +29,13 @@ public class LevelManager : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 	}
 
+	public void StartFirstLevel()
+	{
+		currentLevel = 0;
+        PlayerPrefs.SetInt("currentLevel", currentLevel);
+		LoadNextLevel();
+	}
+
 	public void LoadNextLevel()
 	{
 		currentLevel++;

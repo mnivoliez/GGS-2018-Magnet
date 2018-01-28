@@ -35,10 +35,15 @@ public class GameManager : MonoBehaviour
         _currentAngle = _bulletsShootingAngle.GetEnumerator();
         _sequenceState = SequenceState.Stopped;
         magnetsCreated = new List<GameObject>();
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     void FixedUpdate()
     {
+        Debug.Log(_sequenceState);
         if (_sequenceState == SequenceState.Running)
         {
             switch (_bulletLauncherController.WhatIsTheStatus())
@@ -49,6 +54,7 @@ public class GameManager : MonoBehaviour
 
                     break;
                 case BulletLauncherStatus.AwaintingFiringOrder:
+                
                     _bullets.Add(_bulletLauncherController.LaunchBullet());
                     break;
                 case BulletLauncherStatus.Moving:
