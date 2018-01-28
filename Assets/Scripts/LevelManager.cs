@@ -49,8 +49,17 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
+	public void LoadCurrentLevel()
+	{
+		SceneManager.LoadScene("Level_"+currentLevel);
+	}
+
 	public bool IsLastLevel()
 	{
 		return !(scenesInBuild.Contains ("Level_" + (currentLevel + 1)));
+	}
+
+	public void QuitGame() {
+		Application.Quit();
 	}
 }
