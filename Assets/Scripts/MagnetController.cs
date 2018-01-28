@@ -20,7 +20,6 @@ public class MagnetController : MonoBehaviour {
     private bool isMouseDown;
     public bool isOnTrashcan;
 
-
     // Use this for initialization
 	void Start () {
 		magnetEffect = transform.Find(MagnetChild.AreaEffect.ToString()).gameObject.GetComponent<MagnetEffect>();

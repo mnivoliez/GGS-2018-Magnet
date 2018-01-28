@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AbsorbtionController : MonoBehaviour {
-	
+	private AudioSource _audioSource;
 	private List<GameObject> objectsInAbsorbtion;
 	private GameManager gameManager;
 	[SerializeField]private float rangeDestroy = 0.05f;
 
+void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 	// Use this for initialization
 	void Start () {
 		objectsInAbsorbtion = new List<GameObject>();
@@ -34,6 +38,7 @@ public class AbsorbtionController : MonoBehaviour {
 				foreach (GameObject objectToDestroy in objectsToDestroy)
 				{
 					if (objectToDestroy != null) {
+						_audioSource.Play();
 						objectsInAbsorbtion.Remove(objectToDestroy);
 						Destroy(objectToDestroy);
 					}

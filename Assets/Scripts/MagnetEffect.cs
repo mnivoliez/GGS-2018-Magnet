@@ -9,7 +9,9 @@ public enum DirectionForce
 
 public class MagnetEffect : MonoBehaviour
 {
-
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip _attractSound;
+    [SerializeField] private AudioClip _repulseSound;
     private List<GameObject> objectsInRange;
     private DirectionForce directionForce;
     private float intensity;
@@ -21,6 +23,10 @@ public class MagnetEffect : MonoBehaviour
     private Material[] matsArea;
     private Material[] matsCore;
 
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     // Use this for initialization
     void Start()
@@ -47,10 +53,12 @@ public class MagnetEffect : MonoBehaviour
             matsArea[0] = attractAreaMaterial;
             GetComponent<Renderer>().materials = matsArea;
             matsCore[0] = attractCoreMaterial;
+            _audioSource.clip = _attractSound;
             transform.parent.Find("Core").GetComponent<Renderer>().materials = matsCore;
         }
         else if (matsArea[0].name != "Blue_nain_transparent" && directionForce == DirectionForce.Repulse)
         {
+            _audioSource.clip = _repulseSound;
             matsArea[0] = repulseAreaMaterial;
             GetComponent<Renderer>().materials = matsArea;
             matsCore[0] = repulseCoreMaterial;
@@ -75,7 +83,7 @@ public class MagnetEffect : MonoBehaviour
                 {
                     vectorForce = (objectInRange.transform.position - transform.position).normalized;
                 }
-
+                _audioSource.Play();
                 body.AddForce(vectorForce * intensity);
             }
         }

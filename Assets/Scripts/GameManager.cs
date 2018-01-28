@@ -11,6 +11,11 @@ public enum SequenceState
 
 public class GameManager : MonoBehaviour
 {
+
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip _playSound;
+    [SerializeField] private AudioClip _winSound;
+
     private List<GameObject> _bullets;
     private int _received;
 
@@ -29,6 +34,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject nextLevelButton;
     [SerializeField] private GameObject quadRunning;
     [SerializeField] float timeOnFloat;
+
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     // Use this for initialization
     void Start()
@@ -66,7 +76,7 @@ public class GameManager : MonoBehaviour
 
             GameObject.Find("Play").GetComponent<Button>().interactable = false;
             GameObject.Find("Stop").GetComponent<Button>().interactable = true;
-            
+
             switch (_bulletLauncherController.WhatIsTheStatus())
             {
                 case BulletLauncherStatus.AwaintingAngle:
@@ -75,13 +85,15 @@ public class GameManager : MonoBehaviour
 
                     break;
                 case BulletLauncherStatus.AwaintingFiringOrder:
-                
+
                     _bullets.Add(_bulletLauncherController.LaunchBullet());
                     break;
                 case BulletLauncherStatus.Moving:
                     break;
             }
-        } else {
+        }
+        else
+        {
             if (quadRunning.activeSelf == false)
             {
                 quadRunning.SetActive(true);
@@ -99,6 +111,8 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
+        _audioSource.clip = _playSound;
+        _audioSource.Play();
         _sequenceState = SequenceState.Running;
         _received = 0;
     }
@@ -160,6 +174,8 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         Stop();
+        _audioSource.clip = _winSound;
+        _audioSource.Play();
         timeOnFloat = Time.timeScale;
         Time.timeScale = 0;
         menuLevel.SetActive(true);

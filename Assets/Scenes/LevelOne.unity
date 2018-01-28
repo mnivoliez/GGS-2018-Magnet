@@ -267,11 +267,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _angles.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4054389776439800, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -306,39 +301,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
         type: 2}
-      propertyPath: _bulletRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _intensity
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 36707643}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _angles.Array.data[0]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _angles.Array.data[1]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114147824842149652, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: _angles.Array.data[2]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 136132325153984648, guid: 91e309af5efb74e7690671257bce71fe,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
   m_IsPrefabParent: 0
