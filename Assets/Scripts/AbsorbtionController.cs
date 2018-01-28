@@ -49,7 +49,7 @@ public class AbsorbtionController : MonoBehaviour {
 		if (objectCollided.tag == "Bullet")
 		{
 			Rigidbody body = objectCollided.GetComponent<Rigidbody>();
-			body.velocity = (transform.position - objectCollided.transform.position).normalized;
+			body.velocity = (transform.position - objectCollided.transform.position).normalized * 2.5f;
 			objectsInAbsorbtion.Add(objectCollided);
 			body.useGravity = false;
 		}
