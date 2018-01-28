@@ -11,6 +11,7 @@ public enum BulletLauncherStatus
 }
 public class BulletLauncherController : MonoBehaviour
 {
+    private AudioSource _audioSource;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Transform _bulletOutput;
     [SerializeField] private Rigidbody _bulletPrefab;
@@ -26,6 +27,10 @@ public class BulletLauncherController : MonoBehaviour
 
     private float _initialAngle = -90;
 
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
 
     // Use this for initialization
@@ -34,6 +39,7 @@ public class BulletLauncherController : MonoBehaviour
         _status = BulletLauncherStatus.AwaintingAngle;
         transform.rotation = Quaternion.Euler(0, 0, _initialAngle);
         _timeSinceLastFire = 0f;
+
     }
 
     void FixedUpdate()
@@ -52,11 +58,13 @@ public class BulletLauncherController : MonoBehaviour
             }
 
         }
-        if(_status != BulletLauncherStatus.AwaintingFiringOrder) {
+        if (_status != BulletLauncherStatus.AwaintingFiringOrder)
+        {
             _timeSinceLastFire += Time.fixedDeltaTime;
         }
 
-        if(_status == BulletLauncherStatus.WaitingForFireRate && _timeSinceLastFire >= _fireRate) {
+        if (_status == BulletLauncherStatus.WaitingForFireRate && _timeSinceLastFire >= _fireRate)
+        {
             _timeSinceLastFire = 0f;
             _status = BulletLauncherStatus.AwaintingFiringOrder;
         }
@@ -74,6 +82,7 @@ public class BulletLauncherController : MonoBehaviour
         Vector3 direction = _bulletOutput.transform.position - transform.position;
         direction.Normalize();
         bullet.AddForce(direction * _intensity, ForceMode.Force);
+        _audioSource.Play();
         _status = BulletLauncherStatus.AwaintingAngle;
         return bullet.gameObject;
     }
