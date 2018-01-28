@@ -1,11 +1,45 @@
 fileFormatVersion: 2
-guid: f516020a227e1d34792a2ca8e2453f7e
-timeCreated: 1517110708
+guid: e5cce8175d66ecd419b69b8d215f735b
+timeCreated: 1517097577
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
-  fileIDToRecycleName: {}
-  externalObjects: {}
+  fileIDToRecycleName:
+    100000: Cube.001
+    100002: //RootNode
+    100004: Sphere
+    100006: Sphere.001
+    100008: Sphere.004
+    400000: Cube.001
+    400002: //RootNode
+    400004: Sphere
+    400006: Sphere.001
+    400008: Sphere.004
+    2100000: mat_out
+    2100002: mat_in
+    2300000: Cube.001
+    2300002: Sphere
+    2300004: Sphere.001
+    2300006: Sphere.004
+    3300000: Cube.001
+    3300002: Sphere
+    3300004: Sphere.001
+    3300006: Sphere.004
+    4300000: Sphere.001
+    4300002: Cube.001
+    4300004: Sphere.004
+    4300006: Sphere
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_in
+    second: {fileID: 2100000, guid: 5fd4d00f01b529a49930cf5aca1cedba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_out
+    second: {fileID: 2100000, guid: 35947f24759ccb14daf10d857fe3e7e0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -79,7 +113,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

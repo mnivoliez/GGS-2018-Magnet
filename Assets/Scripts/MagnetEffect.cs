@@ -13,35 +13,48 @@ public class MagnetEffect : MonoBehaviour
     private List<GameObject> objectsInRange;
     private DirectionForce directionForce;
     private float intensity;
-    private Material attractMaterial;
-    private Material repulseMaterial;
+    private Material attractAreaMaterial;
+    private Material attractCoreMaterial;
+    private Material repulseAreaMaterial;
+    private Material repulseCoreMaterial;
     private MeshRenderer meshRend;
-    private Material[] mats;
+    private Material[] matsArea;
+    private Material[] matsCore;
+
 
     // Use this for initialization
     void Start()
     {
         objectsInRange = new List<GameObject>();
         meshRend = GetComponent<MeshRenderer>();
-        attractMaterial = Resources.Load("RedTransparent") as Material;
-        repulseMaterial = Resources.Load("BlueTransparent") as Material;
-        mats = GetComponent<Renderer>().materials;
-        mats[0] = attractMaterial;
-        GetComponent<Renderer>().materials = mats;
+        attractAreaMaterial = Resources.Load("Red_nain_transparent") as Material;
+        attractCoreMaterial = Resources.Load("Red_nain") as Material;
+        repulseAreaMaterial = Resources.Load("Blue_nain_transparent") as Material;
+        repulseCoreMaterial = Resources.Load("Blue_nain") as Material;
+        matsArea = GetComponent<Renderer>().materials;
+        matsArea[0] = attractAreaMaterial;
+        GetComponent<Renderer>().materials = matsArea;
+        matsCore = transform.parent.Find("Core").GetComponent<Renderer>().materials;
+        matsCore[0] = attractCoreMaterial;
+        transform.parent.Find("Core").GetComponent<Renderer>().materials = matsCore;
     }
 
 
     void Update()
     {
-        if (mats[0].name != "RedTransparent" && directionForce == DirectionForce.Attract)
+        if (matsArea[0].name != "Red_nain_transparent" && directionForce == DirectionForce.Attract)
         {
-            mats[0] = attractMaterial;
-            GetComponent<Renderer>().materials = mats;
+            matsArea[0] = attractAreaMaterial;
+            GetComponent<Renderer>().materials = matsArea;
+            matsCore[0] = attractCoreMaterial;
+            transform.parent.Find("Core").GetComponent<Renderer>().materials = matsCore;
         }
-        else if (mats[0].name != "BlueTransparent" && directionForce == DirectionForce.Repulse)
+        else if (matsArea[0].name != "Blue_nain_transparent" && directionForce == DirectionForce.Repulse)
         {
-            mats[0] = repulseMaterial;
-            GetComponent<Renderer>().materials = mats;
+            matsArea[0] = repulseAreaMaterial;
+            GetComponent<Renderer>().materials = matsArea;
+            matsCore[0] = repulseCoreMaterial;
+            transform.parent.Find("Core").GetComponent<Renderer>().materials = matsCore;
         }
     }
 
