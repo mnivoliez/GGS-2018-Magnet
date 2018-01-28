@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(_sequenceState);
         if (_sequenceState == SequenceState.Running)
         {
             switch (_bulletLauncherController.WhatIsTheStatus())
