@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SequenceState
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     private SequenceState _sequenceState;
 
     private List<GameObject> magnetsCreated;
+    public int penalitiesMagnets;
 
     [SerializeField] private BulletLauncherController _bulletLauncherController;
     [SerializeField] private GameObject menuLevel;
@@ -37,10 +39,20 @@ public class GameManager : MonoBehaviour
         _sequenceState = SequenceState.Stopped;
         magnetsCreated = new List<GameObject>();
         quadRunning = GameObject.Find("QuadRunning");
+        GameObject.Find("Play").GetComponent<Button>().interactable = true;
+        GameObject.Find("Stop").GetComponent<Button>().interactable = false;
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
         }
+
+        penalitiesMagnets = 0;
+    }
+
+    void Update()
+    {
+        string penalitiesMessage = "Penalities : " + penalitiesMagnets;
+        GameObject.Find("Penalities").GetComponent<Text>().text = penalitiesMessage;
     }
 
     void FixedUpdate()
@@ -51,6 +63,9 @@ public class GameManager : MonoBehaviour
             {
                 quadRunning.SetActive(false);
             }
+
+            GameObject.Find("Play").GetComponent<Button>().interactable = false;
+            GameObject.Find("Stop").GetComponent<Button>().interactable = true;
             
             switch (_bulletLauncherController.WhatIsTheStatus())
             {
@@ -70,6 +85,8 @@ public class GameManager : MonoBehaviour
             if (quadRunning.activeSelf == false)
             {
                 quadRunning.SetActive(true);
+                GameObject.Find("Play").GetComponent<Button>().interactable = true;
+                GameObject.Find("Stop").GetComponent<Button>().interactable = false;
             }
         }
     }
@@ -123,18 +140,21 @@ public class GameManager : MonoBehaviour
             Destroy(magnetCreated);
         }
         magnetsCreated = new List<GameObject>();
+        penalitiesMagnets = 0;
         UnPause();
     }
 
     public void AddMagnet(GameObject magnet)
     {
         magnetsCreated.Add(magnet);
+        penalitiesMagnets += 50;
     }
 
     public void RemoveMagnet(GameObject magnet)
     {
         magnetsCreated.Remove(magnet);
         Destroy(magnet);
+        penalitiesMagnets -= 50;
     }
 
     private void Win()
