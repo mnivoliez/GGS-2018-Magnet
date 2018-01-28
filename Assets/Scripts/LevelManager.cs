@@ -29,14 +29,27 @@ public class LevelManager : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 	}
 
-	public void LoadNextLevel()
+	public void StartFirstLevel()
 	{
-		currentLevel++;
+		
+		currentLevel = 0;
         PlayerPrefs.SetInt("currentLevel", currentLevel);
-        SceneManager.LoadScene("Level_"+currentLevel);
+		LoadNextLevel();
 	}
 
-	public bool IsItLastLevel()
+	public void LoadNextLevel()
+	{
+		if (!IsLastLevel())
+		{
+			currentLevel++;
+			PlayerPrefs.SetInt("currentLevel", currentLevel);
+			SceneManager.LoadScene("Level_"+currentLevel);
+		} else {
+			LoadMainMenu();
+		}
+	}
+
+	public bool IsLastLevel()
 	{
 		return !(scenesInBuild.Contains ("Level_" + (currentLevel + 1)));
 	}
