@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
 
 	public void StartFirstLevel()
 	{
+		
 		currentLevel = 0;
         PlayerPrefs.SetInt("currentLevel", currentLevel);
 		LoadNextLevel();
@@ -38,12 +39,17 @@ public class LevelManager : MonoBehaviour
 
 	public void LoadNextLevel()
 	{
-		currentLevel++;
-        PlayerPrefs.SetInt("currentLevel", currentLevel);
-        SceneManager.LoadScene("Level_"+currentLevel);
+		if (!IsLastLevel())
+		{
+			currentLevel++;
+			PlayerPrefs.SetInt("currentLevel", currentLevel);
+			SceneManager.LoadScene("Level_"+currentLevel);
+		} else {
+			LoadMainMenu();
+		}
 	}
 
-	public bool IsItLastLevel()
+	public bool IsLastLevel()
 	{
 		return !(scenesInBuild.Contains ("Level_" + (currentLevel + 1)));
 	}
