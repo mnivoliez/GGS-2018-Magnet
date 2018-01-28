@@ -54,6 +54,11 @@ public class LevelManager : MonoBehaviour
 		SceneManager.LoadScene("Level_"+currentLevel);
 	}
 
+	public void LoadCreditsScene()
+	{
+		SceneManager.LoadScene("Credits");
+	}
+
 	public bool IsLastLevel()
 	{
 		return !(scenesInBuild.Contains ("Level_" + (currentLevel + 1)));
