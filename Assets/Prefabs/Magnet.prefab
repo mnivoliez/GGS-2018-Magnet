@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd796c72a5a443b439feac6dcc60b679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attractSound: {fileID: 8300000, guid: fa5344ca0fb0e412b8a763a084c0e256, type: 3}
-  _repulseSound: {fileID: 8300000, guid: b4d3f9597dc0d4e568e696ef67b16fb2, type: 3}
+  _attractSound: {fileID: 8300000, guid: 6b0bdbbd995e2f241976712bea43cb44, type: 3}
+  _repulseSound: {fileID: 8300000, guid: 5861cf22a0ce7e54c84b16b6a87a56d7, type: 3}
 --- !u!135 &135139171321604762
 SphereCollider:
   m_ObjectHideFlags: 1
