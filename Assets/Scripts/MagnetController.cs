@@ -42,7 +42,6 @@ public class MagnetController : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log(GameObject.Find("GameManager").GetComponent<GameManager>().sequenceState);
         if (GameObject.Find("GameManager").GetComponent<GameManager>().sequenceState == SequenceState.Stopped)
         {
             dist = Camera.main.WorldToScreenPoint(transform.position);

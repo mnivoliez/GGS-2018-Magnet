@@ -43,6 +43,7 @@ public class MagnetEffect : MonoBehaviour
         matsCore = transform.parent.Find("Core").GetComponent<Renderer>().materials;
         matsCore[0] = attractCoreMaterial;
         transform.parent.Find("Core").GetComponent<Renderer>().materials = matsCore;
+        _audioSource.clip = _attractSound;
     }
 
 
@@ -83,7 +84,6 @@ public class MagnetEffect : MonoBehaviour
                 {
                     vectorForce = (objectInRange.transform.position - transform.position).normalized;
                 }
-                _audioSource.Play();
                 body.AddForce(vectorForce * intensity);
             }
         }
@@ -96,6 +96,7 @@ public class MagnetEffect : MonoBehaviour
         {
 
             objectsInRange.Add(objectCollided);
+            _audioSource.Play();
         }
     }
 

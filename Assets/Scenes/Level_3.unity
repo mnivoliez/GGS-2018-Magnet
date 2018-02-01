@@ -583,7 +583,13 @@ Prefab:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 900725932}
-    m_RemovedComponents: []
+    - target: {fileID: 82605374620036602, guid: 91e309af5efb74e7690671257bce71fe,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 136132325153984648, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 91e309af5efb74e7690671257bce71fe, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1436026350

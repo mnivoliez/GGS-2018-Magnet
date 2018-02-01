@@ -10,8 +10,10 @@ public class BulletCollisionController : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
     }
+
     void OnCollisionEnter(Collision collision)
     {
-		_audioSource.Play();
+        _audioSource.Play();
+        Debug.Log("hey");
     }
 }
