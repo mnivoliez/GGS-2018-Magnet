@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CotcSdk;
 
 public enum SequenceState
 {
@@ -11,6 +12,8 @@ public enum SequenceState
 
 public class GameManager : MonoBehaviour
 {
+
+    private Cloud Cloud;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _playSound;
@@ -38,6 +41,31 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+
+        // Link with the CotC Game Object
+		var cb = FindObjectOfType<CotcGameObject>();
+		if (cb == null) {
+			Debug.LogError("Please put a Clan of the Cloud prefab in your scene!");
+			return;
+		}
+		// Log unhandled exceptions (.Done block without .Catch -- not called if there is any .Then)
+		Promise.UnhandledException += (object sender, ExceptionEventArgs e) => {
+			Debug.LogError("Unhandled exception: " + e.Exception.ToString());
+		};
+		// Initiate getting the main Cloud object
+		cb.GetCloud().Done(cloud => {
+			Cloud = cloud;
+			// Retry failed HTTP requests once
+			Cloud.HttpRequestFailedHandler = (HttpRequestFailedEventArgs e) => {
+				if (e.UserData == null) {
+					e.UserData = new object();
+					e.RetryIn(1000);
+				}
+				else
+					e.Abort();
+			};
+			Debug.Log("Setup done");
+		});
     }
 
     // Use this for initialization
