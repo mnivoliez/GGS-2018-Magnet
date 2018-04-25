@@ -110,7 +110,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -190,7 +190,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -225,7 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89308df560db742ec914ce1352dc0858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playSound: {fileID: 8300000, guid: 04f990234cb144d56a7637f2facdd778, type: 3}
+  leaderboardContent: {fileID: 0}
+  _playSound: {fileID: 8300000, guid: 64f3accfa3da4f743a95dc59323bbffd, type: 3}
   _winSound: {fileID: 8300000, guid: 94f1cf47a747f4dbb899ef0b8a246276, type: 3}
   _bulletsShootingAngle:
   - 25

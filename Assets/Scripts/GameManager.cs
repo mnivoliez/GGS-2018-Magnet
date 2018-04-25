@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 {
 
     private Cloud Cloud;
+    [SerializeField]
+    private Text leaderboardContent;
 
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _playSound;
@@ -209,6 +211,29 @@ public class GameManager : MonoBehaviour
         menuLevel.SetActive(true);
         continueButton.SetActive(false);
         blurPlane.SetActive(true);
+        GameState.GetInstance().Gamer.Scores.Domain("private")
+            .Post(penalitiesMagnets, GetComponent<LevelManager>().GetCurrentLevel(), ScoreOrder.LowToHigh)
+            .Done(postScoreRes => {
+                Debug.Log("Post score: " + postScoreRes.ToString());
+                GameState.GetInstance().Gamer.Scores.Domain("private")
+                    .List(GetComponent<LevelManager>().GetCurrentLevel(), 10, -1)
+                    .Done(centeredScoresRes => {
+                        //leaderboardContent.text = "";
+                        foreach(var score in centeredScoresRes) {
+                            leaderboardContent.text += score.Rank + "\t" + score.GamerInfo["profile"]["displayName"] + "\t" + score.Value + "\n";
+                            Debug.Log(score.Rank + ". " + score.GamerInfo["profile"]["displayName"] + ": " + score.Value);
+                        }
+                    }, ex => {
+                        // The exception should always be CotcException
+                        CotcException error = (CotcException)ex;
+                        Debug.LogError("Could not get centered scores: " + error.ErrorCode + " (" + error.ErrorInformation + ")");
+                    });
+            }, ex => {
+                // The exception should always be CotcException
+                CotcException error = (CotcException)ex;
+                Debug.LogError("Could not post score: " + error.ErrorCode + " (" + error.ErrorInformation + ")");
+            });
+        
     }
 
     public SequenceState sequenceState

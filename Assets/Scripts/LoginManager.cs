@@ -8,10 +8,8 @@ using UnityEngine.UI;
 public class LoginManager : MonoBehaviour {
 
 	private Cloud Cloud;
-	// The gamer is the base to perform most operations. A gamer object is obtained after successfully signing in.
-	private Gamer Gamer;
-	// When a gamer is logged in, the loop is launched for domain private. Only one is run at once.
-	private DomainEventLoop Loop;
+
+	private GameState gameState;
 	// Input field
 	public InputField EmailInput;
 	public InputField PasswordInput;
@@ -21,6 +19,7 @@ public class LoginManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		gameState = GameState.GetInstance();
 		// Link with the CotC Game Object
 		var cb = FindObjectOfType<CotcGameObject>();
 		if (cb == null) {
@@ -64,14 +63,14 @@ public class LoginManager : MonoBehaviour {
 
 	// Invoked when any sign in operation has completed
 	private void DidLogin(Gamer newGamer) {
-		if (Gamer != null) {
-			Debug.LogWarning("Current gamer " + Gamer.GamerId + " has been dismissed");
-			Loop.Stop();
+		if (gameState.Gamer != null) {
+			Debug.LogWarning("Current gamer " + gameState.Gamer.GamerId + " has been dismissed");
+			gameState.Loop.Stop();
 		}
-		Gamer = newGamer;
-		Loop = Gamer.StartEventLoop();
-		Loop.ReceivedEvent += Loop_ReceivedEvent;
-		Debug.Log("Signed in successfully (ID = " + Gamer.GamerId + ")");
+		gameState.Gamer = newGamer;
+		gameState.Loop = gameState.Gamer.StartEventLoop();
+		gameState.Loop.ReceivedEvent += Loop_ReceivedEvent;
+		Debug.Log("Signed in successfully (ID = " + gameState.Gamer.GamerId + ")");
 		LoadMainMenu();
 	}
 

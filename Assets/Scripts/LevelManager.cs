@@ -72,4 +72,8 @@ public class LevelManager : MonoBehaviour
 	public void QuitGame() {
 		Application.Quit();
 	}
+
+	public string GetCurrentLevel() {
+		return "Level_" + currentLevel;
+	}
 }
