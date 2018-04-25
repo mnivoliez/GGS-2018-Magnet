@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
                 GameState.GetInstance().Gamer.Scores.Domain("private")
                     .List(GetComponent<LevelManager>().GetCurrentLevel(), 10, -1)
                     .Done(centeredScoresRes => {
-                        //leaderboardContent.text = "";
+                        leaderboardContent.text = "";
                         foreach(var score in centeredScoresRes) {
                             leaderboardContent.text += score.Rank + "\t" + score.GamerInfo["profile"]["displayName"] + "\t" + score.Value + "\n";
                             Debug.Log(score.Rank + ". " + score.GamerInfo["profile"]["displayName"] + ": " + score.Value);
